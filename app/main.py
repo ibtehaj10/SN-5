@@ -14,17 +14,12 @@ bt_network.sync()
 app = FastAPI()
 
 
-origins = [
-  # Adjust this to your frontend's URL
-    "http://135.181.63.160:8001"
-]
-
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,  # Or ["*"] for open access from any domain
+    allow_origins=["*"],  # Allows all origins
     allow_credentials=True,
-    allow_methods=["*"],  # Or specify like ["GET", "POST"]
-    allow_headers=["*"],
+    allow_methods=["*"],  # Allows all methods
+    allow_headers=["*"],  # Allows all headers
 )
 
 
