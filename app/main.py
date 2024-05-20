@@ -3,6 +3,7 @@ from pydantic import BaseModel
 import bittensor as bt
 from bittensor import Keypair, metagraph, wallet
 from openkaito.openkaito.protocol import SemanticSearchSynapse
+from fastapi.middleware.cors import CORSMiddleware
 
 # Configuration and Setup
 hotkey = Keypair.create_from_mnemonic("fever unlock seven sphere robot royal feature post tennis ivory black when")
@@ -11,6 +12,21 @@ bt_network = bt.metagraph(5, network="finney")
 bt_network.sync()
 
 app = FastAPI()
+
+
+origins = [
+  # Adjust this to your frontend's URL
+    "http://135.181.63.160:8001"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,  # Or ["*"] for open access from any domain
+    allow_credentials=True,
+    allow_methods=["*"],  # Or specify like ["GET", "POST"]
+    allow_headers=["*"],
+)
+
 
 class QueryParams(BaseModel):
     query_string: str
