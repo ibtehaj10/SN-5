@@ -3,3 +3,5 @@ uvicorn
 python-dotenv 
 loguru
 bittensor
+openai
+transformers
