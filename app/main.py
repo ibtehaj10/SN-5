@@ -6,7 +6,7 @@ from openkaito.openkaito.protocol import SemanticSearchSynapse
 from fastapi.middleware.cors import CORSMiddleware
 
 # Configuration and Setup
-hotkey = Keypair.create_from_mnemonic("fever unlock seven sphere robot royal feature post tennis ivory black when")
+hotkey = Keypair.create_from_mnemonic()
 dendrite = bt.dendrite(wallet=hotkey)
 bt_network = bt.metagraph(5, network="finney")
 bt_network.sync()
