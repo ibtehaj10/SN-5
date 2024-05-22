@@ -13,8 +13,8 @@ Ensure you have Python 3.8+ installed on your system. To install the required de
 
 1. Clone the repository:
    ```
-   git clone https://your-repository-link.git
-   cd your-repository-directory/SN-5
+   git clone https://github.com/neuralinternet/subnet-endpoints.git
+   cd subnet-endpoints.git/SN-5
    ```
    Install the required Python packages:
 ```
