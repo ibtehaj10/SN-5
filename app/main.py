@@ -2,26 +2,20 @@ from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 import bittensor as bt
 from bittensor import Keypair, metagraph, wallet
-from openkaito.openkaito.protocol import SemanticSearchSynapse
-from fastapi.middleware.cors import CORSMiddleware
+from protocol import SemanticSearchSynapse
 
 # Configuration and Setup
 hotkey = Keypair.create_from_mnemonic()
-dendrite = bt.dendrite(wallet=hotkey)
-bt_network = bt.metagraph(5, network="finney")
-bt_network.sync()
+def sync_metagraph():
+    dendrite = bt.dendrite(wallet=hotkey)
+    bt_network = bt.metagraph(5, network="finney")
+    bt_network.sync()
+    return dendrite,bt_network
 
 app = FastAPI()
 
 
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],  # Allows all origins
-    allow_credentials=True,
-    allow_methods=["*"],  # Allows all methods
-    allow_headers=["*"],  # Allows all headers
-)
-
+dendrite, bt_network = sync_metagraph()
 
 class QueryParams(BaseModel):
     query_string: str
@@ -37,11 +31,13 @@ async def search_synapse(query_params: QueryParams):
     )
     
     axons = bt_network.axons
+    
     if not axons:
+        dendrite, bt_network = sync_metagraph()
         raise HTTPException(status_code=404, detail="No axons available for querying")
 
     try:
-        response = await dendrite(axons[:min(len(axons), 10)], timeout=300.0, synapse=synapse)
+        response = dendrite(axons[:min(len(axons), 10)], timeout=300.0, synapse=synapse)
         return response
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
