@@ -5,9 +5,7 @@ This FastAPI application utilizes the Bittensor network to provide a decentraliz
 ## Features
 
 - **Semantic Search**: Search by meaning rather than exact keyword matches.
-- **Structured Search**: Allows specifying additional conditions like sort type and date ranges.
-- **Discord Search**: Specific to querying content from the Bittensor Discord server.
-- **Secure API Key Handling**: Utilizes environment variables to securely manage API keys.
+
 
 ## Installation
 
