@@ -24,7 +24,7 @@ def sync_metagraph():
 
 app = FastAPI()
 
-
+bt_network = ''
 dendrite, bt_network = sync_metagraph()
 
 class QueryParams(BaseModel):
