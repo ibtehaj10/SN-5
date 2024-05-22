@@ -4,8 +4,18 @@ import bittensor as bt
 from bittensor import Keypair, metagraph, wallet
 from protocol import SemanticSearchSynapse
 
+
+import os
+
+# Get the API key from the environment variable
+mnemonic = os.getenv("mnemonic")
+
+if api_key:
+    print("mnemonic Key found:", api_key)
+else:
+    print("API Key not found.")
 # Configuration and Setup
-hotkey = Keypair.create_from_mnemonic()
+hotkey = Keypair.create_from_mnemonic(mnemonic)
 def sync_metagraph():
     dendrite = bt.dendrite(wallet=hotkey)
     bt_network = bt.metagraph(5, network="finney")
