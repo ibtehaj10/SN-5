@@ -48,7 +48,7 @@ async def search_synapse(query_params: QueryParams):
         raise HTTPException(status_code=404, detail="No axons available for querying")
 
     try:
-        response = dendrite(axons[:min(len(axons), 10)], timeout=300.0, synapse=synapse)
+        response = await dendrite(axons[:min(len(axons), 10)], timeout=300.0, synapse=synapse)
         return response
     except Exception as e:
         raise HTTPException(status_code=500, detail=str(e))
