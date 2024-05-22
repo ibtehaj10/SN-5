@@ -26,7 +26,7 @@ bt_network.sync()
 app = FastAPI()
 
 
-dendrite, bt_network = sync_metagraph()
+# dendrite, bt_network = sync_metagraph()
 
 class QueryParams(BaseModel):
     query_string: str
@@ -44,7 +44,7 @@ async def search_synapse(query_params: QueryParams):
     axons = bt_network.axons
     
     if not axons:
-        dendrite, bt_network = sync_metagraph()
+        # dendrite, bt_network = sync_metagraph()
         raise HTTPException(status_code=404, detail="No axons available for querying")
 
     try:
