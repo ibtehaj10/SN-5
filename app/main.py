@@ -10,8 +10,8 @@ import os
 # Get the API key from the environment variable
 mnemonic = os.getenv("mnemonic")
 
-if api_key:
-    print("mnemonic Key found:", api_key)
+if mnemonic:
+    print("mnemonic Key found:", mnemonic)
 else:
     print("API Key not found.")
 # Configuration and Setup
