@@ -15,13 +15,13 @@ if mnemonic:
 else:
     print("API Key not found.")
 # Configuration and Setup
-bt_network = ''
+
 hotkey = Keypair.create_from_mnemonic(mnemonic)
-def sync_metagraph():
-    dendrite = bt.dendrite(wallet=hotkey)
-    bt_network = bt.metagraph(5, network="finney")
-    bt_network.sync()
-    return dendrite,bt_network
+# def sync_metagraph():
+dendrite = bt.dendrite(wallet=hotkey)
+bt_network = bt.metagraph(5, network="finney")
+bt_network.sync()
+    # return dendrite,bt_network
 
 app = FastAPI()
 
